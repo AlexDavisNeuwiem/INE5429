@@ -17,7 +17,7 @@ if __name__ == "__main__":
     k = 17
     m = 2**32
 
-    # Gerando sementes iniciais
+    # Gerando sementes iniciais com random
     seed = [random.randint(1, m-1) for _ in range(k)]
 
     lfg = LaggedFibonacciGenerator(seed, j, k, m)

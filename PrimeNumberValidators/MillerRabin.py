@@ -16,7 +16,7 @@ def modular_exponentiation(base: int, exponent: int, modulus: int) -> int:
         base = (base * base) % modulus  # Eleve a base ao quadrado
     return result
 
-def miller_rabin(n: int, k: int) -> bool:
+def miller_rabin(n: int, k=5) -> bool:
     """
     Teste de primalidade de Miller-Rabin.
     

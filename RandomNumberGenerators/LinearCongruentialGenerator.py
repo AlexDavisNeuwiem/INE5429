@@ -1,10 +1,10 @@
 class LinearCongruentialGenerator:
     def __init__(self, seed: int, a=1664525, c=1013904223, m=2**32):
         """
-        seed: Valor inicial
-        a: Múltiplicador
-        c: Incremento
-        m: Módulo
+        seed: Valor inicial.
+        a: Múltiplicador.
+        c: Incremento.
+        m: Módulo.
         """
         self.a = a
         self.c = c
