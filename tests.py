@@ -51,20 +51,22 @@ if __name__ == "__main__":
     ===== TESTE DO FPT =====
     '''
 
-    numero = 561
-    if teste_fermat(numero):
-        print(f"\n{numero} é provavelmente primo pelo teste de Fermat.")
+    numero = 547349664017
+    print(f"\nTamanho de {numero} em bits:", numero.bit_length())
+    if fermat_primality_test(numero):
+        print("Esse número é provavelmente primo pelo teste de Fermat.")
     else:
-        print(f"\n{numero} é composto.")
+        print("Esse número é composto.")
 
 
     '''
     ===== TESTE DO MR =====
     '''
 
-    n = 29
+    numero = 29
     k = 5  # número de iterações
-    if miller_rabin(n, k):
-        print(f"{n} é provavelmente primo.")
+    print(f"\nTamanho de {numero} em bits:", numero.bit_length())
+    if miller_rabin(numero, k):
+        print("Esse número é provavelmente primo pelo algoritmo de Miller-Rabin.")
     else:
-        print(f"{n} é composto.")
+        print("Esse número é composto.")
