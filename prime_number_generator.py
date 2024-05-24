@@ -1,3 +1,5 @@
+from time import time
+
 from RandomNumberGenerators.LaggedFibonacciGenerator import *
 from RandomNumberGenerators.LinearCongruentialGenerator import *
 
@@ -5,26 +7,33 @@ from PrimeNumberValidators.FermatPrimalityTest import *
 from PrimeNumberValidators.MillerRabin import *
 
 def generate_prime_number(generator) -> int:
+    generated_prime = 0
+    number_of_loops = 5
+
     fermat_test_prime = False
     miller_rabin_prime = False
-    number_of_loops = 5
-    prime = 0
+
+    start_time = 0
+    end_time = 0
 
     while (not fermat_test_prime) or (not miller_rabin_prime):
+        start_time = time()
         random_number = generator.next()
         
         # Teste de Primalidade de Fermat
         if fermat_primality_test(random_number, number_of_loops):
             fermat_test_prime = True
-            prime = random_number
+            generated_prime = random_number
 
         # Miller-Rabin
         if miller_rabin(random_number, number_of_loops):
             miller_rabin_prime = True
-            prime = random_number
+            generated_prime = random_number
+        end_time = time()
 
-    print("Número primo gerado =", prime)
-    print("Tamanho do número gerado em bits:", random_number.bit_length())
+    print("Número primo gerado =", generated_prime)
+    print("Tamanho do número gerado:", random_number.bit_length(), "bits.")
+    print("Tempo de execução: {:.6f} segundos.".format(end_time - start_time))
     if fermat_test_prime:
         print("Esse número é PROVAVELMENTE PRIMO pelo teste de Fermat.")
     else:
@@ -35,17 +44,17 @@ def generate_prime_number(generator) -> int:
         print("Esse número é COMPOSTO pelo teste de Miller-Rabin.")
     print("")
 
-    return prime
+    return generated_prime
 
 
 if __name__ == "__main__":
 
-    print("=" * 85)
+    print("=" * 100)
 
     print("\nLAGGED FIBONACCI GENERATOR\n")
 
     # Definindo o tamanho dos números primos gerados
-    bit_lengths =  [40, 56, 80, 128, 168, 224, 256, 512, 1024] # [2048, 4096]
+    bit_lengths =  [40, 56, 80, 128, 168, 224, 256, 512, 1024, 2048] # 4096
 
     for size in bit_lengths:
         # Parâmetros
@@ -62,7 +71,7 @@ if __name__ == "__main__":
         # Testando a primalidade dos números aleatórios gerados
         generate_prime_number(lfg)
 
-    print("=" * 85)
+    print("=" * 100)
 
     print("\nLINEAR CONGRUENTIAL GENERATOR\n")
 
@@ -81,4 +90,4 @@ if __name__ == "__main__":
         # Testando a primalidade dos números aleatórios gerados
         generate_prime_number(lcg)
     
-    print("=" * 85)
+    print("=" * 100)
