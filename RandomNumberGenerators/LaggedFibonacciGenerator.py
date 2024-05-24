@@ -1,5 +1,5 @@
 class LaggedFibonacciGenerator:
-    def __init__(self, seed: list[int], j=5, k=17, m=2**32):
+    def __init__(self, seed: list[int], j: int, k: int, m: int):
         """
         seed: Sequência inicial de números inteiros.
         j: Índice de um valor anterior à k na sequência.
@@ -18,7 +18,7 @@ class LaggedFibonacciGenerator:
         self.index = (self.index + 1) % len(self.x)
         return new_value
 
-    def generate_sequence(self, n=5) -> list[int]:
+    def generate_sequence(self, n: int) -> list[int]:
         sequence = []
         for _ in range(n):
             sequence.append(self.next())

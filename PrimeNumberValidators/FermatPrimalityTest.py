@@ -16,7 +16,7 @@ def modular_exponentiation(base: int, exponent: int, modulus: int) -> int:
         base = (base * base) % modulus  # Eleve a base ao quadrado
     return result
 
-def fermat_primality_test(n: int, k=5) -> bool:
+def fermat_primality_test(n: int, k: int) -> bool:
     """
     Teste de primalidade de Fermat.
     
