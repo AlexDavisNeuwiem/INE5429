@@ -11,7 +11,7 @@ def generate_pseudorandom_number(generator) -> int:
 
     print("Número pseudo-aleatório gerado =", generated_number)
     print("Tamanho do número gerado:", generated_number.bit_length(), "bits.")
-    print("Tempo de execução: {:.6f} segundos.\n".format(end_time - start_time))
+    print("Tempo de execução: {:.8f} segundos.\n".format(end_time - start_time))
 
     return generated_number
 

@@ -13,6 +13,7 @@ class LaggedFibonacciGenerator:
         self.index = 0
 
     def next(self) -> int:
+        # Aplicando a fórmula: Xn = (X[n-j] + X[n-k]) mod m
         new_value = (self.x[self.index - self.j] + self.x[self.index - self.k]) % self.m
         self.x[self.index] = new_value
         self.index = (self.index + 1) % len(self.x)

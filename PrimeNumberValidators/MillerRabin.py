@@ -10,10 +10,10 @@ def modular_exponentiation(base: int, exponent: int, modulus: int) -> int:
     result = 1
     base = base % modulus
     while exponent > 0:
-        if (exponent % 2) == 1:  # Se o expoente é ímpar, multiplique a base com o resultado
+        if (exponent % 2) == 1:  # Se o expoente é ímpar, vamos multiplicar a base com o resultado
             result = (result * base) % modulus
-        exponent //= 2 # Divida o expoente por 2
-        base = (base * base) % modulus  # Eleve a base ao quadrado
+        exponent //= 2 # Dividindo o expoente por 2
+        base = (base * base) % modulus  # Elevando a base ao quadrado
     return result
 
 def miller_rabin(n: int, k: int) -> bool:
@@ -30,14 +30,14 @@ def miller_rabin(n: int, k: int) -> bool:
     if n % 2 == 0:
         return False
     
-    # Escreva n-1 como 2^s * d
+    # Escrevendo n-1 como 2^s * d
     s = 0
     d = n - 1
     while (d % 2) == 0:
         d //= 2
         s += 1
     
-    # Realize k testes
+    # Realizando k testes
     for _ in range(k):
         a = randint(2, n - 2) # Único uso da classe random
         x = modular_exponentiation(a, d, n)

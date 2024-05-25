@@ -12,6 +12,7 @@ class LinearCongruentialGenerator:
         self.x = seed
 
     def next(self) -> int:
+        # Aplicando a fórmula: Xn = (aX[n-1] + c) mod m
         self.x = (self.a * self.x + self.c) % self.m
         return self.x
 
