@@ -1,3 +1,4 @@
+from random import randint
 from time import time
 
 from RandomNumberGenerators.LaggedFibonacciGenerator import *
@@ -32,17 +33,16 @@ def generate_prime_number(generator) -> int:
         end_time = time()
 
     print("Número primo gerado =", generated_prime)
-    print("Tamanho do número gerado:", random_number.bit_length(), "bits.")
+    print("Tamanho do número gerado:", generated_prime.bit_length(), "bits.")
     print("Tempo de execução: {:.6f} segundos.".format(end_time - start_time))
     if fermat_test_prime:
         print("Esse número é PROVAVELMENTE PRIMO pelo teste de Fermat.")
     else:
         print("Esse número é COMPOSTO pelo teste de Fermat.")
     if miller_rabin_prime:
-        print("Esse número é PROVAVELMENTE PRIMO pelo teste de Miller-Rabin.")
+        print("Esse número é PROVAVELMENTE PRIMO pelo teste de Miller-Rabin.\n")
     else:
-        print("Esse número é COMPOSTO pelo teste de Miller-Rabin.")
-    print("")
+        print("Esse número é COMPOSTO pelo teste de Miller-Rabin.\n")
 
     return generated_prime
 
@@ -63,7 +63,7 @@ if __name__ == "__main__":
         m = 2**size
 
         # Gerando sementes iniciais com random
-        seed = [random.randint(1, m-1) for _ in range(k)]
+        seed = [randint(1, m-1) for _ in range(k)]
 
         # Criando uma instância de LFG
         lfg = LaggedFibonacciGenerator(seed, j, k, m)
@@ -82,7 +82,7 @@ if __name__ == "__main__":
         m = 2**size
 
         # Gerando a semente inicial com random
-        seed = random.randint(1, m-1)
+        seed = randint(1, m-1)
 
         # Criando uma instância do LCG
         lcg = LinearCongruentialGenerator(seed, a, c, m)

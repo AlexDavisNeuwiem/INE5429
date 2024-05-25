@@ -1,72 +1,62 @@
-import random
+from random import randint
+from time import time
 
 from RandomNumberGenerators.LaggedFibonacciGenerator import *
 from RandomNumberGenerators.LinearCongruentialGenerator import *
 
-from PrimeNumberValidators.FermatPrimalityTest import *
-from PrimeNumberValidators.MillerRabin import *
+def generate_pseudorandom_number(generator) -> int:
+    start_time = time()
+    generated_number = generator.next()
+    end_time = time()
+
+    print("Número pseudo-aleatório gerado =", generated_number)
+    print("Tamanho do número gerado:", generated_number.bit_length(), "bits.")
+    print("Tempo de execução: {:.6f} segundos.\n".format(end_time - start_time))
+
+    return generated_number
+
 
 if __name__ == "__main__":
 
-    '''
-    ===== TESTE DO LFG =====
-    '''
+    print("=" * 100)
 
-    # Parâmetros
-    j = 5
-    k = 17
-    m = 2**32
+    print("\nLAGGED FIBONACCI GENERATOR\n")
 
-    # Gerando sementes iniciais com random
-    seed = [random.randint(1, m-1) for _ in range(k)]
+    # Definindo o tamanho dos números primos gerados
+    bit_lengths =  [40, 56, 80, 128, 168, 224, 256, 512, 1024, 2048, 4096]
 
-    lfg = LaggedFibonacciGenerator(seed, j, k, m)
+    for size in bit_lengths:
+        # Parâmetros
+        j = 5
+        k = 17
+        m = 2**size
 
-    # Gerar uma sequência de 10 números pseudoaleatórios
-    sequence = lfg.generate_sequence(10)
-    print("TESTE DO LFG =>", sequence)
+        # Gerando sementes iniciais com random
+        seed = [randint(1, m-1) for _ in range(k)]
 
+        # Criando uma instância de LFG
+        lfg = LaggedFibonacciGenerator(seed, j, k, m)
 
-    '''
-    ===== TESTE DO LCG =====
-    '''
+        # Testando a primalidade dos números aleatórios gerados
+        generate_pseudorandom_number(lfg)
 
-    # Parâmetros
-    a = 1664525
-    c = 1013904223
-    m = 2**32
+    print("=" * 100)
 
-    # Gerando a semente inicial
-    seed = random.randint(1, m-1)
+    print("\nLINEAR CONGRUENTIAL GENERATOR\n")
 
-    # Criar uma instância do LCG
-    lcg = LinearCongruentialGenerator(seed, a, c, m)
+    for size in bit_lengths:
+        # Parâmetros
+        a = 1664525
+        c = 1013904223
+        m = 2**size
 
-    # Gerar uma sequência de 10 números pseudoaleatórios
-    sequence = lcg.generate_sequence(10)
-    print("\nTESTE DO LCG =>", sequence)
+        # Gerando a semente inicial com random
+        seed = randint(1, m-1)
 
+        # Criando uma instância do LCG
+        lcg = LinearCongruentialGenerator(seed, a, c, m)
 
-    '''
-    ===== TESTE DO FPT =====
-    '''
-
-    numero = 547349664017
-    print(f"\nTamanho de {numero} em bits:", numero.bit_length())
-    if fermat_primality_test(numero):
-        print("Esse número é provavelmente primo pelo teste de Fermat.")
-    else:
-        print("Esse número é composto.")
-
-
-    '''
-    ===== TESTE DO MR =====
-    '''
-
-    numero = 29
-    k = 5  # número de iterações
-    print(f"\nTamanho de {numero} em bits:", numero.bit_length())
-    if miller_rabin(numero, k):
-        print("Esse número é provavelmente primo pelo algoritmo de Miller-Rabin.")
-    else:
-        print("Esse número é composto.")
+        # Testando a primalidade dos números aleatórios gerados
+        generate_pseudorandom_number(lcg)
+    
+    print("=" * 100)

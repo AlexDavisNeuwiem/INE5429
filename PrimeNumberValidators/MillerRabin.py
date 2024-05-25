@@ -1,4 +1,4 @@
-import random
+from random import randint
 
 from RandomNumberGenerators.LaggedFibonacciGenerator import *
 from RandomNumberGenerators.LinearCongruentialGenerator import *
@@ -39,7 +39,7 @@ def miller_rabin(n: int, k: int) -> bool:
     
     # Realize k testes
     for _ in range(k):
-        a = random.randint(2, n - 2) # Único uso da classe random
+        a = randint(2, n - 2) # Único uso da classe random
         x = modular_exponentiation(a, d, n)
         
         if x == 1 or x == (n - 1):

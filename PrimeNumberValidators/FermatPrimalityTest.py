@@ -1,4 +1,4 @@
-import random
+from random import randint
 
 from RandomNumberGenerators.LaggedFibonacciGenerator import *
 from RandomNumberGenerators.LinearCongruentialGenerator import *
@@ -31,7 +31,7 @@ def fermat_primality_test(n: int, k: int) -> bool:
         return False
     
     for _ in range(k):
-        a = random.randint(2, n - 1) # Único uso da classe random
+        a = randint(2, n - 1) # Único uso da classe random
         if modular_exponentiation(a, n - 1, n) != 1:
             return False
     
