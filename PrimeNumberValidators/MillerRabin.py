@@ -23,13 +23,22 @@ def miller_rabin(n: int, k: int) -> bool:
     n: Número a ser testado.
     k: Número de iterações do teste (maior valor aumenta a precisão).
     """
+    # Se n for negativo ou 1
     if n <= 1:
         return False
+    # Se n for 2 ou 3
     if n <= 3:
         return True
+    # Se n for par
     if n % 2 == 0:
         return False
     
+    """
+    Implementação baseada nos sites:
+        - https://en.wikipedia.org/wiki/Miller%E2%80%93Rabin_primality_test
+        - https://www.geeksforgeeks.org/primality-test-set-3-miller-rabin/
+    """
+
     # Escrevendo n-1 como 2^s * d
     s = 0
     d = n - 1
@@ -47,7 +56,7 @@ def miller_rabin(n: int, k: int) -> bool:
         
         for _ in range(s - 1):
             x = modular_exponentiation(x, 2, n)
-            if x == n - 1:
+            if x == (n - 1):
                 break
         else:
             return False

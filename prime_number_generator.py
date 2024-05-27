@@ -42,7 +42,7 @@ if __name__ == "__main__":
     bit_lengths =  [40, 56, 80, 128, 168, 224, 256, 512, 1024, 2048] # 4096
 
     for size in bit_lengths:
-        # Parâmetros
+        # Parâmetros escolhidos conforme o site: https://en.wikipedia.org/wiki/Linear_congruential_generator
         a = 1664525
         c = 1013904223
         m = 2**size
@@ -61,7 +61,7 @@ if __name__ == "__main__":
     print("\nMILLER-RABIN PRIMALITY TEST\n")
 
     for size in bit_lengths:
-        # Parâmetros
+        # Parâmetros escolhidos conforme o site: https://en.wikipedia.org/wiki/Linear_congruential_generator
         a = 1664525
         c = 1013904223
         m = 2**size

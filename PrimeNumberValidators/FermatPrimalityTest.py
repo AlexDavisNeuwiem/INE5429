@@ -23,12 +23,21 @@ def fermat_primality_test(n: int, k: int) -> bool:
     n: Número a ser testado.
     k: Número de iterações do teste (maior valor aumenta a precisão).
     """
+    # Se n for negativo ou 1
     if n <= 1:
         return False
+    # Se n for 2 ou 3
     if n <= 3:
         return True
+    # Se n for par
     if n % 2 == 0:
         return False
+    
+    """
+    Implementação baseada nos sites:
+        - https://en.wikipedia.org/wiki/Fermat_primality_test
+        - https://www.geeksforgeeks.org/fermat-method-of-primality-test/
+    """
     
     # Realizando k testes
     for _ in range(k):
